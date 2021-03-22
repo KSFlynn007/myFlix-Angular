@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    // allows for client app to communicate with API/server-side:
     HttpClientModule
   ],
   providers: [],
