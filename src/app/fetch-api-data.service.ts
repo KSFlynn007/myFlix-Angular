@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse} from '@angula
 import {Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-const apiUrl = 'http://localhost:4200/'
+const apiUrl = 'https://m-y-f-l-i-x.herokuapp.com/'
 
 // NEW USER REGISTER:
 
