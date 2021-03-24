@@ -51,7 +51,7 @@ export class UserLoginService {
 
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'login', 'userDetails').pipe(
+    return this.http.post(apiUrl + 'login', userDetails).pipe(
       catchError(this.handleError)
     );
   }
@@ -422,7 +422,7 @@ export class DeleteUserService {
   providedIn: 'root'
 })
 
-export class DeleteavoriteMovieService {
+export class DeleteFavoriteMovieService {
   constructor(private http: HttpClient) {}
 
   deleteFavoriteMovie(): Observable<any> {
