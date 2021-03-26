@@ -13,6 +13,10 @@
   margin: 0px;
 }
 
+.nav-title:hover {
+  cursor: pointer;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
