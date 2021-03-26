@@ -5,8 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   GetAllMoviesService,
   GetOneMovieService,
-  GetUserService,
-  DeleteUserService
+  AddFavoriteMovieService
 } from '../fetch-api-data.service';
 
 import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
@@ -22,9 +21,8 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   constructor(
     public fetchApiData: GetAllMoviesService,
-    public fetchApiDataUser: GetUserService,
     public fetchApiDataOneMovie: GetOneMovieService,
-    public fetchApiDataDeleteUser: DeleteUserService,
+    public fetchApiDataAddFav: AddFavoriteMovieService,
     public dialog: MatDialog,
     public snackbar: MatSnackBar
   ) { }
@@ -82,6 +80,17 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  addFavoriteMovie(id: string, Title: string): void {
+    this.fetchApiDataAddFav.addFavoriteMovie(id).subscribe((resp: any) => {
+      console.log(resp);
+      this.snackbar.open(
+        `${Title} added to your favorite`, "OK", {
+          duration: 2000
+        }
+      );
+    });
+  }
+  
 }
 
 
