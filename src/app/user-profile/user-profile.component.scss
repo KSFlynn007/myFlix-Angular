@@ -6,3 +6,19 @@ mat-card {
   display: flex;
   justify-content: space-between;
 }
+
+.favMovie-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteFav-movie:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.card_image {
+  border: 1px solid rgba(0, 0, 0, 0.571);
+  box-shadow: 2px 4px 5px black;
+  margin: 0 auto;
+}

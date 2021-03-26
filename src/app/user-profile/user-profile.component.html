@@ -3,7 +3,8 @@
     <!-- welcome card -->
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Welcome Name to go here{{userData.Username}}</mat-card-title>
+            <!-- if I update user, the username I input is taken here, but I need this title to take data from the existing user -->
+            <mat-card-title>Welcome ______{{userData.Username}}</mat-card-title>
         </mat-card-header>
     </mat-card>
 
@@ -53,9 +54,9 @@
         <!-- favorites movies content option 2: fav list -->
         <div class="movie_container">
             <mat-card *ngFor="let movie of favoriteMovies; let i = index" class="card">
-                <mat-card-header class="header">
+                <mat-card-header class="favMovie-header">
                     <mat-card-title class="card_title">{{ movie.Title }}</mat-card-title>
-                    <mat-icon (click)="deleteFavoriteMovie(movie._id, movie.Title)">Remove from favorites</mat-icon>
+                    <mat-icon class="deleteFav-movie" (click)="deleteFavoriteMovie(movie._id, movie.Title)">delete</mat-icon>
                     <mat-card-subtitle class="card_subtitle"><span>{{movie.Year}}</span>
                     </mat-card-subtitle>
                 </mat-card-header>
