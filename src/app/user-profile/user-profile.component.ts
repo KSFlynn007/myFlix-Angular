@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {
@@ -31,7 +30,9 @@ export class UserProfileComponent implements OnInit {
     public fetchApiDataAddMovie: AddFavoriteMovieService,
     public fetchApiDataUpdateUser: UpdateUserService,
     public fetchApiDataDeleteUser: DeleteUserService,
-    public fetchApiDataDeleteMovie: DeleteFavoriteMovieService
+    public fetchApiDataDeleteMovie: DeleteFavoriteMovieService,
+    public snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -73,9 +74,44 @@ export class UserProfileComponent implements OnInit {
   deleteFavoriteMovie(id: string, title: string): void {
     this.fetchApiDataDeleteMovie.deleteFavoriteMovie(id).subscribe((resp: any) => {
       console.log(resp);
-      window.location.reload();
+      this.snackBar.open(
+        `${title} has been removed from your favorites list.`, `OK`, {
+          duration: 2000
+        }
+      );
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
     })
   }
 
+  updateUser(): void {
+    this.fetchApiDataUpdateUser.updateUser(this.userData).subscribe((result) => {
+      console.log(result);
+      this.snackBar.open("Your profile has been updated.", "OK", {
+        duration: 2000
+      });
+    },
+      (result) => {
+        console.log(result);
+        this.snackBar.open(result, "OK", {
+          duration: 5000
+        });
+      });
+  }
 
+  deleteUser(): void {
+    let OK = confirm("Are you sure you want to delete your profile? This action cannot be undone.");
+    if(OK) {
+      this.fetchApiDataDeleteUser.deleteUser().subscribe(() => {
+        localStorage.clear();
+        this.router.navigate(['welcome']);
+        this.snackBar.open('Your profile was deleted.', "OK", {
+          duration: 2000
+      });     
+     });
+    } else {
+      window.location.reload();
+    }
+  }
 }
