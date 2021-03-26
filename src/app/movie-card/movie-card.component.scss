@@ -1,9 +1,26 @@
 mat-card {
-  display: grid;
+  margin: 20px;
+  padding: 10px;
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-header,
+mat-card-subtitle,
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+  color: red;
 }
 
 .movie-img {
   width: 50%;
   border: 1px solid rgba(0, 0, 0, 0.571);
   box-shadow: 2px 4px 5px black;
+  margin: 0 auto;
 }
