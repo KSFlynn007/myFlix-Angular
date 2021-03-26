@@ -309,7 +309,8 @@ export class DeleteUserService {
 
   deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + `users/:username`, {headers: new HttpHeaders(
+    const username = localStorage.getItem('user');
+    return this.http.delete(apiUrl + `users/${username}`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })
@@ -348,7 +349,7 @@ export class GetUserFavoriteService {
   getUserFavorite(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-    return this.http.post(apiUrl + `users/${username}/:FavoriteMovies`, {headers: new HttpHeaders(
+    return this.http.post(apiUrl + `users/${username}/FavoriteMovies`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })
@@ -387,7 +388,7 @@ export class AddFavoriteMovieService {
   addFavoriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-    return this.http.post(apiUrl + `users/${username}/:FavoriteMovies/${id}`, id, {headers: new HttpHeaders(
+    return this.http.post(apiUrl + `users/${username}/FavoriteMovies/${id}`, id, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })
@@ -426,7 +427,7 @@ export class DeleteFavoriteMovieService {
   deleteFavoriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-    return this.http.delete(apiUrl + `users/${username}/:FavoriteMovies/${id}`, {headers: new HttpHeaders(
+    return this.http.delete(apiUrl + `users/${username}/FavoriteMovies/${id}`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })
