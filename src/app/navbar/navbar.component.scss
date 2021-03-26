@@ -1,0 +1,27 @@
+.nav {
+  padding: 20px;
+  background-color: lightgray;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.nav-title {
+  margin: 0px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin-left: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}

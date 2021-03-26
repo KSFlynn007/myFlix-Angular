@@ -1,6 +1,6 @@
 mat-card {
   margin: 20px;
-  padding: 10px;
+  padding: 20px;
   background: lightgray;
   display: flex;
   flex-direction: column;
@@ -23,4 +23,5 @@ mat-icon:hover {
   border: 1px solid rgba(0, 0, 0, 0.571);
   box-shadow: 2px 4px 5px black;
   margin: 0 auto;
+  margin-bottom: 10px;
 }

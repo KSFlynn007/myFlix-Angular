@@ -1,1 +1,15 @@
-<p>navbar works!</p>
+<div class="nav">
+    <div class="container">
+        <div routerLink="/movies" class="title">
+            <h1 class="nav-title">myFlix Angular</h1>
+        </div>
+        <div class="buttons">
+            <button class="profile">My Profile</button>
+            <button
+            class="logout"
+            routerLink="/"
+            (click)="logoutUser()"
+            >Logout</button>
+        </div>
+    </div>
+</div>
