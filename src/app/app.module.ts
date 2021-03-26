@@ -22,6 +22,7 @@ import { DirectorDialogComponent } from './director-dialog/director-dialog.compo
 import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
 import { DetailsDialogComponent } from './details-dialog/details-dialog.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const appRoutes: Routes = [
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     DirectorDialogComponent,
     GenreDialogComponent,
     DetailsDialogComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
