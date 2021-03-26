@@ -17,8 +17,7 @@ export class DirectorDialogComponent implements OnInit {
     public data: {
       name: string;
       bio: string;
-      birth: Date;
-      death: Date;
+      birthday: Date;
     }
   ) { }
 

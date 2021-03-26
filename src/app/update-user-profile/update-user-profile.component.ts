@@ -36,7 +36,7 @@ export class UpdateUserProfileComponent implements OnInit {
   }
 
   getUser(): void {
-    this.fetchApiDataUser.getUser(localStorage.getItem('user')).subscribe((resp: any) => {
+    this.fetchApiDataUser.getUser().subscribe((resp: any) => {
       this.userData = resp;
     });
   }
@@ -46,7 +46,7 @@ export class UpdateUserProfileComponent implements OnInit {
   */
   profileUser(): void {
     const username = localStorage.getItem('user');
-    this.fetchApiDataUser.getUser(username).subscribe((result) => {
+    this.fetchApiDataUser.getUser().subscribe((result) => {
       localStorage.getItem('token');
       console.log(result);
       this.snackbar.open(`Welcome to your profile, ${username}!`, 'OK', {

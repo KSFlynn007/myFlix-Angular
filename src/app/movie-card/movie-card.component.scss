@@ -1,7 +1,9 @@
-.container {
-  display: block;
+mat-card {
+  display: grid;
+}
 
-  .movie-cards {
-    display: flex;
-  }
+.movie-img {
+  width: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.571);
+  box-shadow: 2px 4px 5px black;
 }

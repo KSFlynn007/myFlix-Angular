@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
    * Gets the user's data from the database
    */
   getUser(): void {
-    this.fetchApiData.getUser(localStorage.getItem('user')).subscribe((resp: any) => {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
       this.getMovies();
     });
