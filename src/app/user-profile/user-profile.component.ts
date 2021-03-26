@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUserFavorite()
+    this.getUserFavorite();
   }
 
   // get list of favorite movies
@@ -43,8 +43,39 @@ export class UserProfileComponent implements OnInit {
     const user = localStorage.getItem('user');
     console.log(user);
     if(user) {
-      this.fetchApiDataUsers.getUser(user).subscribe
+      this.fetchApiDataUsers.getUser(user).subscribe((resp: any) => {
+        this.favoriteMoviesIDs = resp.FavoriteMovies;
+        console.log(resp);
+        console.log(this.favoriteMoviesIDs);
+        return this.favoriteMoviesIDs;
+      })
     }
+    setTimeout(() => {
+      this.getAllMovies();
+    }, 100);
   }
+
+  // get list of all movies
+  getAllMovies(): void {
+    this.fetchApiDataMovies.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+
+      console.log(this.movies);
+      this.movies.forEach((movie) => {
+        if(this.favoriteMoviesIDs.includes(movie._id))
+          this.favoriteMovies.push(movie);
+      });
+      console.log(this.favoriteMovies);
+      return this.favoriteMovies;
+    });
+  }
+
+  deleteFavoriteMovie(id: string, title: string): void {
+    this.fetchApiDataDeleteMovie.deleteFavoriteMovie(id).subscribe((resp: any) => {
+      console.log(resp);
+      window.location.reload();
+    })
+  }
+
 
 }
