@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 const apiUrl = 'https://m-y-f-l-i-x.herokuapp.com/'
 
@@ -313,16 +313,9 @@ export class DeleteUserService {
     return this.http.delete(apiUrl + `users/${username}`, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
-      })
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
-
-  private extractResponseData(res: Response | Object): any {
-    const body = res;
-    return body || { };
+      }),
+      responseType: 'text'
+    }).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): any {
