@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   movies: any[] = [];
   favoriteMovies: any[] = [];
   favoriteMoviesIDs: any[] = [];
+  currentUser: string;
 
   constructor(
     public fetchApiDataMovies: GetAllMoviesService,
@@ -33,7 +34,9 @@ export class UserProfileComponent implements OnInit {
     public fetchApiDataDeleteMovie: DeleteFavoriteMovieService,
     public snackBar: MatSnackBar,
     private router: Router
-  ) { }
+  ) {
+    this.currentUser = localStorage.getItem('user') || '';
+  }
 
   ngOnInit(): void {
     this.getUserFavorite();
@@ -105,10 +108,8 @@ export class UserProfileComponent implements OnInit {
     if(OK) {
       this.fetchApiDataDeleteUser.deleteUser().subscribe(() => {
         localStorage.clear();
+        this.snackBar.open('Your profile was deleted.', "OK", {duration: 2000});
         this.router.navigate(['welcome']);
-        this.snackBar.open('Your profile was deleted.', "OK", {
-          duration: 2000
-      });     
      });
     } else {
       window.location.reload();
