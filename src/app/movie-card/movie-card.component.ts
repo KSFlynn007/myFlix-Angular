@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 import {
   GetAllMoviesService,
@@ -84,7 +85,7 @@ export class MovieCardComponent implements OnInit {
     this.fetchApiDataAddFav.addFavoriteMovie(id).subscribe((resp: any) => {
       console.log(resp);
       this.snackbar.open(
-        `${Title} added to your favorite`, "OK", {
+        `${Title} added to your favorites list!`, "OK", {
           duration: 2000
         }
       );

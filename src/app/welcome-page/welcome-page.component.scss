@@ -13,3 +13,11 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.welcome-buttons > * {
+  background-color: #f4845f;
+}
+
+.welcome-buttons > :first-child {
+  margin-right: 10px;
+}

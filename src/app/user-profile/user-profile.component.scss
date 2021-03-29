@@ -1,5 +1,7 @@
-mat-card {
+// main/update profile card
+.container {
   margin: 20px;
+  padding: 30px;
 }
 
 .update-buttons {
@@ -7,18 +9,49 @@ mat-card {
   justify-content: space-between;
 }
 
+.update-buttons :first-child {
+  background-color: #f4845f;
+}
+
+.update-button:last-child :hover {
+  border: 1px solid black;
+}
+
+// fav movie card
+.movie-container {
+  margin: 20px;
+  padding: 20px;
+  // not catching margin at bottom of list
+  margin-bottom: 100px;
+}
+
+.card {
+  background-color: lightgray;
+  margin: 20px;
+  padding: 30px;
+}
+
 .favMovie-header {
   display: flex;
   justify-content: space-between;
+  justify-content: center;
+}
+
+.card_subtitle {
+  display: flex;
+  justify-content: center;
 }
 
 .deleteFav-movie:hover {
   cursor: pointer;
-  color: red;
+  color: #f25c54;
 }
 
 .card_image {
   border: 1px solid rgba(0, 0, 0, 0.571);
   box-shadow: 2px 4px 5px black;
+  width: 30%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }

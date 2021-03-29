@@ -1,9 +1,14 @@
 mat-card {
-  margin: 20px;
+  margin: 20px 40px;
   padding: 20px;
   background: lightgray;
   display: flex;
   flex-direction: column;
+}
+
+// not taking effect?
+mat-card:last-child {
+  margin-bottom: 20px;
 }
 
 mat-card-header,
@@ -15,7 +20,7 @@ mat-card-actions {
 
 mat-icon:hover {
   cursor: pointer;
-  color: red;
+  color: #f25c54;
 }
 
 .movie-img {
@@ -24,4 +29,8 @@ mat-icon:hover {
   box-shadow: 2px 4px 5px black;
   margin: 0 auto;
   margin-bottom: 10px;
+}
+
+button:hover {
+  background: #f4845f;
 }

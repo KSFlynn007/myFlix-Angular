@@ -1,41 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Satisfy&display=swap");
-
-.login-title {
-  font-family: "Michroma", sans-serif;
-  font-size: 16px;
-  margin-left: 50px;
-  margin-bottom: 10px;
-  text-decoration: underline;
-}
-
-.mat-form-field {
-  margin-top: 8px;
-}
-
 // border color
 ::ng-deep.mat-dialog-container {
   background-color: lightgray;
 }
 
-input {
-  font-size: 14px;
+mat-card {
+  padding-bottom: 30px;
 }
 
-.sign-in-button {
-  font-family: "Michroma", sans-serif;
-  margin-bottom: 5px;
-  border: 1px solid black;
+.logIn-button {
+  background-color: #f4845f;
 }
 
-.close-icon-container {
+mat-card-header {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  position: absolute;
-  top: -5px;
-  right: 28px;
+  justify-content: center;
 }
 
-.close-icon {
-  width: 0;
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
 }

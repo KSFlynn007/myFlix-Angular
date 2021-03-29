@@ -2,3 +2,22 @@
 ::ng-deep.mat-dialog-container {
   background-color: lightgray;
 }
+
+mat-card {
+  padding-bottom: 30px;
+}
+
+.signUp-button {
+  background-color: #f4845f;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}

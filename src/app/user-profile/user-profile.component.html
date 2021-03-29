@@ -1,17 +1,9 @@
 <app-navbar></app-navbar>
 <div class="profile_page">
-    <!-- welcome card -->
-    <mat-card>
-        <mat-card-header>
-            <!-- if I update user, the username I input is taken here, but I need this title to take data from the existing user -->
-            <mat-card-title>Welcome {{currentUser}}</mat-card-title>
-        </mat-card-header>
-    </mat-card>
-
     <!-- update profile card -->
     <mat-card class="container">
         <mat-card-header class="update-header">
-            <mat-card-title class="title">Update Profile</mat-card-title>
+            <mat-card-title class="title">Update {{currentUser}}'s Profile</mat-card-title>
         </mat-card-header>
         <mat-card-content class="card_content">
             <form>
@@ -34,15 +26,15 @@
             </form>
         </mat-card-content>
         <mat-card-actions class="update-buttons">
-            <button mat-raised-button (click)="updateUser()" class="update_button" color="primary">
-                Submit
+            <button mat-raised-button (click)="updateUser()">
+                Submit Changes
             </button>
             <button mat-raised-button (click)="deleteUser()" color="warn">Delete Profile</button>
         </mat-card-actions>
     </mat-card>
 
     <!-- favorite movies list card -->
-    <mat-card>
+    <mat-card class="movie-container">
         <mat-card-header>
             <mat-card-title class="fav-title">
                 Your Favorite Movies
@@ -52,7 +44,7 @@
         </mat-card-header>
 
         <!-- favorites movies content option 2: fav list -->
-        <div class="movie_container">
+        <div class="movie-list">
             <mat-card *ngFor="let movie of favoriteMovies; let i = index" class="card">
                 <mat-card-header class="favMovie-header">
                     <mat-card-title class="card_title">{{ movie.Title }}</mat-card-title>
@@ -60,8 +52,7 @@
                     <mat-card-subtitle class="card_subtitle"><span>{{movie.Year}}</span>
                     </mat-card-subtitle>
                 </mat-card-header>
-                <img style="width: 250px; height: 350px;" src="{{ movie.ImageURL }}" alt="{{ movie.Title }}"
-                    class="card_image" />
+                <img src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" class="card_image"/>
             </mat-card>
         </div>
     </mat-card>

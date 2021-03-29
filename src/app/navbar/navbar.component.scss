@@ -1,6 +1,7 @@
 .nav {
   padding: 20px;
   background-color: lightgray;
+  margin-bottom: 40px;
 }
 
 .container {
@@ -9,12 +10,13 @@
   align-content: center;
 }
 
-.nav-title {
-  margin: 0px;
+.nav-home {
+  display: flex;
+  flex-direction: row;
 }
 
-.nav-title:hover {
-  cursor: pointer;
+.nav-title {
+  // get rid of margin underneath title?
 }
 
 .buttons {
@@ -22,10 +24,21 @@
   justify-content: space-between;
 }
 
-button {
+.buttons > *,
+.home-button {
   margin-left: 10px;
+  background-color: #f4845f;
 }
 
 button:hover {
   cursor: pointer;
+}
+
+@media (min-width: 200px) and (max-width: 390px) {
+  .buttons {
+    flex-direction: column;
+  }
+  button {
+    margin-bottom: 10px;
+  }
 }

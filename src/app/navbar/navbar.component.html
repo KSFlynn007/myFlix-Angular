@@ -1,16 +1,25 @@
 <div class="nav">
     <div class="container">
-        <div routerLink="/movies" class="title">
+        <div class="nav-home"> 
             <h1 class="nav-title">myFlix Angular</h1>
+            <button 
+                mat-icon-button 
+                routerLink="/movies" 
+                class="home-button" 
+                aria-label="Example icon button with a home icon">
+                <mat-icon>home</mat-icon>
+            </button>
         </div>
         <div class="buttons">
             <button 
+            mat-raised-button
             class="profile"
             routerLink="/profile"
             >
             My Profile
         </button>
             <button
+            mat-raised-button
             class="logout"
             routerLink="/"
             (click)="logoutUser()"
