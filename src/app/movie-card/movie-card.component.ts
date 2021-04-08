@@ -12,6 +12,7 @@ import {
 import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
 import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
 import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
+import { ParameterReflection } from 'typedoc';
 
 @Component({
   selector: 'app-movie-card',
@@ -28,12 +29,16 @@ export class MovieCardComponent implements OnInit {
     public snackbar: MatSnackBar
   ) { }
 
+  /**
+   * getMovies() function is run on init
+   */
+
   ngOnInit(): void {
     this.getMovies();
   }
 
   /**
-   * This retrieves a list of all the movies and stores them in an array
+   * retrieves a list of all the movies and stores them in an array
    */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -44,6 +49,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
+   * Opens dialog box with movie summary info
    * 
    * @param title 
    * @param image 
@@ -60,6 +66,7 @@ export class MovieCardComponent implements OnInit {
 
   /**
    * 
+   * Opens dialog with movie director info
    * @param name 
    * @param bio 
    * @param birthday 
@@ -71,6 +78,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
+   * Opens dialog with movie genre info
    * 
    * @param name 
    * @param description 
@@ -80,6 +88,13 @@ export class MovieCardComponent implements OnInit {
       data: { name, description },
     });
   }
+
+  /**
+   * Adds movie to favorite list, accessed via user-profile component
+   * 
+   * @param id 
+   * @param Title 
+   */
 
   addFavoriteMovie(id: string, Title: string): void {
     this.fetchApiDataAddFav.addFavoriteMovie(id).subscribe((resp: any) => {
@@ -93,5 +108,4 @@ export class MovieCardComponent implements OnInit {
   }
   
 }
-
 

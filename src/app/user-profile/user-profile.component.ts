@@ -38,11 +38,16 @@ export class UserProfileComponent implements OnInit {
     this.currentUser = localStorage.getItem('user') || '';
   }
 
+  /**
+   * runs getUserFavorite() on init
+   */
   ngOnInit(): void {
     this.getUserFavorite();
   }
 
-  // get list of favorite movies
+  /**
+   * gets user's data from the database
+   */
   getUserFavorite(): void {
     const user = localStorage.getItem('user');
     console.log(user);
@@ -59,7 +64,9 @@ export class UserProfileComponent implements OnInit {
     }, 100);
   }
 
-  // get list of all movies
+  /** 
+   * returns list of all movies from database and pushes into favoriteMovies
+   */
   getAllMovies(): void {
     this.fetchApiDataMovies.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -74,19 +81,30 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * deletes movies from favorites list
+   * 
+   * @param id 
+   * @param title 
+   */
+
   deleteFavoriteMovie(id: string, title: string): void {
     this.fetchApiDataDeleteMovie.deleteFavoriteMovie(id).subscribe((resp: any) => {
       console.log(resp);
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
       this.snackBar.open(
         `${title} has been removed from your favorites list.`, `OK`, {
           duration: 2000
         }
       );
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
     })
   }
+
+  /**
+   * changes user information in database
+   */
 
   updateUser(): void {
     this.fetchApiDataUpdateUser.updateUser(this.userData).subscribe((result) => {
@@ -102,6 +120,10 @@ export class UserProfileComponent implements OnInit {
         });
       });
   }
+
+  /**
+   * deletes user from database
+   */
 
   deleteUser(): void {
     let OK = confirm("Are you sure you want to delete your profile? This action cannot be undone.");

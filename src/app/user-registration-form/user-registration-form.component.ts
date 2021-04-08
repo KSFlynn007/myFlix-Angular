@@ -27,8 +27,7 @@ ngOnInit(): void {
    */
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
-  // Logic for a successful user registration goes here! (To be implemented)
-     this.dialogRef.close(); // This will close the modal on success!
+     this.dialogRef.close(); 
      console.log(response);
      this.snackBar.open('User was registered successfully, you can now login!', 'OK', {
         duration: 5000
