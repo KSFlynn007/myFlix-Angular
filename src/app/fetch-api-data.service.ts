@@ -7,26 +7,38 @@ import {map, tap} from 'rxjs/operators';
 
 const apiUrl = 'https://m-y-f-l-i-x.herokuapp.com/'
 
-// NEW USER REGISTER:
-
-// tells Angular that this service will be available everywhere:
+/**
+ * New User Registration Service:
+ * @Injectable tells Angular that this service is available everywhere
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class UserRegistrationService {
-  // Inject the HttpClient module to the constructor params, provides HttpClient to the entire class, making it available via this.http
+  /**
+   * Injects the HttpClient module to the constructor params, provides HttpClient to the entire class, making it available via this.http
+   * @param http 
+   * 
+   */
   constructor(private http: HttpClient) {
   }
+  /** 
+   * @param userDetails 
+   * @returns the user information
+   */
 //  Observable is typescript cast
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
-    // endpoint, like apiUrl/${users} in React:
     // .pipe function used to combine multiple functions to one.
     return this.http.post(apiUrl + 'users', userDetails).pipe(
     catchError(this.handleError)
     );
   }
 
+  /**
+   * @param error 
+   * @returns the error handling
+   */
   private handleError(error: HttpErrorResponse): any {
       if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
@@ -41,14 +53,23 @@ export class UserRegistrationService {
 }
 
 
-//USER LOGIN:
+/**
+ * User Login Service:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserLoginService {
+  /**
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * @param userDetails 
+   * @returns posts the new user information to the database
+   */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(
@@ -56,6 +77,10 @@ export class UserLoginService {
     );
   }
 
+  /**
+   * @param error 
+   * @returns the userLogin error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occured:', error.error.message);
@@ -70,14 +95,23 @@ export class UserLoginService {
   }
 }
 
-//GET ALL MOVIES:
+/**
+ * getAllMovies() service
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetAllMoviesService {
+  /**
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @returns all movies list from database
+   */
   getAllMovies(): Observable<any> {
       const token = localStorage.getItem('token');
       return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
@@ -89,12 +123,19 @@ export class GetAllMoviesService {
         catchError(this.handleError)
       );
     }
-  // Non-typed response extraction
+    /**
+     * Non-typed response extraction
+     * @param res 
+     */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getAllMovies error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -108,14 +149,24 @@ export class GetAllMoviesService {
   }
 }
 
-// GET ONE MOVIE BY TITLE:
+/**
+ * Get one movie by title:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetOneMovieService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * gets a movie by title:
+   * @returns single movie by title
+   */
   getMovieByTitle(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/:Title', {headers: new HttpHeaders(
@@ -128,11 +179,18 @@ export class GetOneMovieService {
     );
   }
 
+  /**
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getMovieByTitle error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -146,14 +204,24 @@ export class GetOneMovieService {
   }
 }
 
-// GET DIRECTOR:
+/**
+ * Get Director:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetDirectorService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * getDirector()
+   * @returns director information
+   */
   getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/directors/:Name', {headers: new HttpHeaders(
@@ -166,11 +234,19 @@ export class GetDirectorService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getDirector error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -184,14 +260,24 @@ export class GetDirectorService {
   }
 }
 
-// GET GENRE
+/**
+ * Get Genre:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetGenreService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @returns movie genres
+   */
   getGenre(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genres/:Name', {headers: new HttpHeaders(
@@ -204,11 +290,19 @@ export class GetGenreService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getDirector error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -222,14 +316,25 @@ export class GetGenreService {
   }
 }
 
-// GET USER
+/**
+ * Get User:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetUserService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @param username 
+   * @returns user information from database
+   */
   getUser(username: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + `users/${username}`, {headers: new HttpHeaders(
@@ -242,11 +347,19 @@ export class GetUserService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getUser error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -260,14 +373,25 @@ export class GetUserService {
   }
 }
 
-// EDIT USER:
+/**
+ * Update User:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class UpdateUserService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @param userData 
+   * @returns updated user information (PUT) to database
+   */
   updateUser(userData: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -281,11 +405,19 @@ export class UpdateUserService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns updateUser error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -299,14 +431,24 @@ export class UpdateUserService {
   }
 }
 
-// DELETE USER
+/**
+ * Delete User:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class DeleteUserService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @returns delete method for user
+   */
   deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -318,6 +460,10 @@ export class DeleteUserService {
     }).pipe(catchError(this.handleError));
   }
 
+  /**
+   * @param error 
+   * @returns deleteUser error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -331,14 +477,24 @@ export class DeleteUserService {
   }
 }
 
-// GET FAVORITE MOVIES FOR A USER
+/**
+ * Get Favorite Movies:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class GetUserFavoriteService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @returns user favorite movie list object
+   */
   getUserFavorite(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -352,11 +508,19 @@ export class GetUserFavoriteService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns getUserFavorite error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -370,14 +534,25 @@ export class GetUserFavoriteService {
   }
 }
 
-// ADD MOVIES TO FAVORITES
+/**
+ * Add Movies to Favorites:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class AddFavoriteMovieService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @param id 
+   * @returns post, adds movie to user's favorite's in database
+   */
   addFavoriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -391,11 +566,19 @@ export class AddFavoriteMovieService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns addFavoriteMovies error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -409,14 +592,25 @@ export class AddFavoriteMovieService {
   }
 }
 
-// DELETE 
+/**
+ * Delete Favorite Movies:
+ */
 @Injectable({
   providedIn: 'root'
 })
 
 export class DeleteFavoriteMovieService {
+  /**
+   * 
+   * @param http 
+   */
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @param id 
+   * @returns delete favorite movie from user collection in database
+   */
   deleteFavoriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -430,11 +624,19 @@ export class DeleteFavoriteMovieService {
     );
   }
 
+  /**
+   * 
+   * @param res 
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
 
+  /**
+   * @param error 
+   * @returns deleteFavoriteMovie error handling
+   */
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
