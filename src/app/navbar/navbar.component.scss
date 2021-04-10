@@ -16,12 +16,16 @@
 }
 
 .nav-title {
-  // get rid of margin underneath title?
+  margin-top: 16px;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.home-button {
+  margin-top: 10px;
 }
 
 .buttons > *,
